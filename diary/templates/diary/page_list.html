@@ -6,7 +6,7 @@
     <ul>
             {% for obj in object_list %}
         <li>
-            <a href="/diary/page/{{obj.id}}">
+            <a href="{% url 'page-detail' obj.id %}">
                 <div class="date">
                     <span>{{obj.dt_created|date:"d"}}</span>
                                 <p>{{obj.dt_created|date:"M"}}</p>
