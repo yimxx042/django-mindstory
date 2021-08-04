@@ -17,14 +17,16 @@ def info(request):
 
 def page_create(request):
     if request.method == 'POST': 
-        new_page = Page( #post these data
-            title=request.POST['title'],  
-            content=request.POST['content'],
-            feeling=request.POST['feeling'],
-            score=request.POST['score'],
-            dt_created=request.POST['dt_created']
-        )
-        new_page.save() # save on database
+        form = PageForm(request.POST) # make binding form the inserted value
+        new_page = form.save()  #data save and return saved data
+        # new_page = Page( #post these data
+        #     title=request.POST['title'],  
+        #     content=request.POST['content'],
+        #     feeling=request.POST['feeling'],
+        #     score=request.POST['score'],
+        #     dt_created=request.POST['dt_created']
+        # )
+        # new_page.save() # save on database
         return redirect('page-detail', page_id=new_page.id)
     else:
         form = PageForm() #new empty form
