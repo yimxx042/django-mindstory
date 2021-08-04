@@ -1,27 +1,35 @@
-<div class="notetext">
-    <div class="text-box">
-        <h2>{{object.title}}</h2>
-        <div class="state">
-            <p>Mind Status</p>
-            <span>{{object.feeling}}</span>
-        </div>
-        <div class="score">
-            <p>Feeling Scores</p>
-            <span>{{object.score}}점</span>
-        </div> 
-        <div class="date">
-            <span>{{object.dt_created|date:"d"}}</span>
-            <div class="month-year">
-                <p class="month">{{object.dt_created|date:"M"}}</p>
-                <p class="year">{{object.dt_created|date:"Y"}}</p>
+<!-- page_detail.html -->
+
+{% extends './base.html' %} <!-- base -->
+
+{% block content %} <!-- content block  -->
+<div class="wrap-notetext">
+    <div class="notetext">
+        <div class="text-box">
+            <h2>{{object.title}}</h2>
+            <div class="state">
+                <p>Mind Status</p>
+                <span>{{object.feeling}}</span>
             </div>
-        </div>
-        <div class="detail">{{object.content|linebreaksbr}}</div>
-        <div class="notetext-btn">
-            <ul>
-                <li><a href="#">Delete</a></li>
-                <li><a href="#">Edit</a></li>
-            </ul>
+            <div class="score">
+                <p>Mind Scores</p>
+                <span>{{object.score}}점</span>
+            </div> 
+            <div class="date">
+                <span>{{object.dt_created|date:"d"}}</span>
+                <div class="month-year">
+                    <p class="month">{{object.dt_created|date:"M"}}</p>
+                    <p class="year">{{object.dt_created|date:"Y"}}</p>
+                </div>
+            </div>
+            <div class="detail">{{object.content|linebreaksbr}}</div>
+            <div class="notetext-btn">
+                <ul>
+                    <li><a href="#">Delete</a></li>
+                    <li><a href="#">Modify</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
+{% endblock content %} 
