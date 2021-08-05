@@ -18,7 +18,8 @@ def info(request):
 def page_create(request):
     if request.method == 'POST': 
         form = PageForm(request.POST) # make binding form the inserted value
-        new_page = form.save()  #data save and return saved data
+        if form.is_valid(): #only when the data is validated
+            new_page = form.save()  #data save and return saved data
         # new_page = Page( #post these data
         #     title=request.POST['title'],  
         #     content=request.POST['content'],
@@ -27,7 +28,7 @@ def page_create(request):
         #     dt_created=request.POST['dt_created']
         # )
         # new_page.save() # save on database
-        return redirect('page-detail', page_id=new_page.id)
+            return redirect('page-detail', page_id=new_page.id) #redirect to new page
     else:
         form = PageForm() #new empty form
-        return render(request, 'diary/page_form.html', {'form': form})
+    return render(request, 'diary/page_form.html', {'form': form})
