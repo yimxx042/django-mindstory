@@ -1,12 +1,12 @@
 {% extends './base.html' %}
 
 {% block content %}
-{% if page.object_list %} 
+{% if page_obj.object_list %} 
     <div class="wrap-note">
         <div class="note">         
             <div class="note-list">
                 <ul>
-                    {% for obj in page.object_list %} 
+                    {% for obj in page_obj.object_list %} 
                     <li>
                         <a href="{% url 'page-detail' obj.id %}">
                             <div class="date">
@@ -28,24 +28,24 @@
         <div class="default">
             <div class="default-box">
                 <p>"How was your day"</p>
-                <a href="{% url 'page-create' %}">Write a diary/a>
+                <a href="{% url 'page-create' %}">Write a diary</a>
             </div>
         </div>
     </div>
 
 <div class="paging">
-    {% if page.has_previous %}
+    {% if page_obj.has_previous %}
         <a href="?page=1" class="first">First</a>
-        <a href="?page={{page.previous_page_number}}" class="prev">Prev</a>
+        <a href="?page={{page_obj.previous_page_number}}" class="prev">Prev</a>
     {% endif %}
 
     <span class="page">
-        <p>{{page.number}} of {{page.paginator.num_pages}}</p>
+        <p>{{page_obj.number}} of {{page_obj.paginator.num_pages}}</p>
     </span>
 
-    {% if page.has_next %} 
-        <a href="?page={{page.next_page_number}}" class="next">Next</a>
-        <a href="?page={{page.paginator.num_pages}}" class="last">Last</a>
+    {% if page_obj.has_next %} 
+        <a href="?page={{page_obj.next_page_number}}" class="next">Next</a>
+        <a href="?page={{page_obj.paginator.num_pages}}" class="last">Last</a>
     {% endif %}
 </div>
 
