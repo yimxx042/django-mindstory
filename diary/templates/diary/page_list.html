@@ -1,28 +1,38 @@
-<!-- page_list.html -->
 {% extends './base.html' %}
 
-{% block content %} <!-- content block -->
-<div class="wrap-note">
-    <div class="note">         
-        <div class="note-list">
-            <ul>
-                {% for obj in object_list %}
-                <li>
-                    <a href="{% url 'page-detail' obj.id %}">
-                        <div class="date">
-                            <span>{{obj.dt_created|date:"d"}}</span>
-                            <p>{{obj.dt_created|date:"M"}}</p>
-                        </div>
-                        <h2>{{obj.title}}</h2>
-                        <div class="score">
-                            <p>mind scores</p>
-                            <span>{{obj.score}}points</span>
-                        </div>
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
+{% block content %}
+{% if object_list %} <!-- if there is a data.-->
+    <div class="wrap-note">
+        <div class="note">         
+            <div class="note-list">
+                <ul>
+                    {% for obj in object_list %}
+                    <li>
+                        <a href="{% url 'page-detail' obj.id %}">
+                            <div class="date">
+                                <span>{{obj.dt_created|date:"d"}}</span>
+                                <p>{{obj.dt_created|date:"M"}}</p>
+                            </div>
+                            <h2>{{obj.title}}</h2>
+                            <div class="score">
+                                <p>Scores</p>
+                                <span>{{obj.score}}Points</span>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-{% endblock content %} <!-- content block -->
+{% else %} <!-- there is no date on object_list -->
+    <div class="wrap-default">
+        <div class="default">
+            <div class="default-box">
+                <p>"How was your day?"</p>
+                <a href="{% url 'page-create' %}">Write a diary </a> <!-- Write a diary-->
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock content %}
