@@ -55,3 +55,6 @@ def page_delete(request, page_id):
                 # return page_confirm_delete.html
                 # put object for confirm title of delete
         return render(request, 'diary/page_confirm_delete.html', {'object': object})
+
+def index(request):
+    return render(request, 'diary/index.html')
