@@ -44,3 +44,14 @@ def page_update(request, page_id):
     else:
         form = PageForm(instance=object)
     return render(request, 'diary/page_form.html', {'form': form})
+
+
+def page_delete(request, page_id):
+    object = Page.objects.get(id=page_id)
+    if request.method == 'POST': # if post method
+        object.delete() # delete the page
+        return redirect('page-list') # return diary list
+    else: # if get method
+                # return page_confirm_delete.html
+                # put object for confirm title of delete
+        return render(request, 'diary/page_confirm_delete.html', {'object': object})

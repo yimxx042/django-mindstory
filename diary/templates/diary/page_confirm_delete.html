@@ -1,0 +1,21 @@
+{% extends './base.html' %}
+
+{% block content %}
+<div class="wrap-delete">
+    <div class="delete-box">
+        <div class="note-info">
+            <p>&#123;</p>
+            <span class="note-date">{{object.dt_create}}</span>
+            <span class="note-title">{{object.title}}</span>
+            <p>&#125;</p>
+        </div>
+        <p>Do you want to delete?</p>
+        <form method='post'>{% csrf_token %}
+            <ul>
+                <li><input type="submit" value="Delete"></li>
+                <li><a href="{% url 'page-detail' object.id%}">No</a></li> 
+            </ul>
+        </form>
+    </div>
+</div>
+{% endblock content %}
